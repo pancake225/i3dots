@@ -7,12 +7,6 @@ installer that also handles dependencies.
 It is meant to be readable and hackable: no compositor tricks, no icon fonts,
 no pywal — just a clean bar, 10px gaps, and a few shell scripts.
 
-```
-┌──────────────────────────────────────────────────────────────────────┐
-│  1  2  3            14:32          eno1  65%  87%        [tray]      │
-└──────────────────────────────────────────────────────────────────────┘
-```
-
 ---
 
 ## Contents

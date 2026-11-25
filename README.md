@@ -76,7 +76,7 @@ package manager, see [Supported distros](#supported-distros).
 ## Install
 
 ```sh
-git clone <this-repo> ~/i3dots     # or copy the folder to ~/i3dots
+git clone https://github.com/pancake225/i3dots.git ~/i3dots     # or copy the folder to ~/i3dots
 cd ~/i3dots
 ./install.sh
 ```

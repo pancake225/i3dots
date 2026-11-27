@@ -6,10 +6,11 @@ set $mod Mod1
 exec --no-startup-id ~/.config/i3/scripts/wallpaper.sh --restore
 exec_always --no-startup-id ~/.config/polybar/launch.sh
 exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/scripts/lock.sh --nofork
 exec --no-startup-id nm-applet
+exec --no-startup-id ~/.config/i3/scripts/notifyd.sh
 exec_always --no-startup-id setxkbmap -layout us,ru -option 'grp:win_space_toggle'
-exec_always --no-startup-id picom --config ~/.config/picom/picom.conf -b
+exec_always --no-startup-id ~/.config/i3/scripts/picom-guard.sh
 
 # --- Look ---
 default_border pixel 0
@@ -18,9 +19,19 @@ hide_edge_borders smart
 gaps inner 10
 gaps outer 5
 
+# --- Floating windows ---
+# Dialogs and utility windows should float, not tile.
+for_window [window_type="dialog"] floating enable
+for_window [class="pavucontrol"] floating enable
+for_window [class="nm-connection-editor"] floating enable
+for_window [class="lxappearance"] floating enable
+for_window [class="blueman-manager"] floating enable
+for_window [class="scratchpad"] floating enable, resize set 60 ppt 40 ppt, move position center
+
 # --- Screenshots ---
-bindsym Print exec --no-startup-id xfce4-screenshooter
-bindsym --release Shift+Print exec --no-startup-id xfce4-screenshooter -r
+bindsym Print exec --no-startup-id ~/.config/i3/scripts/screenshot.sh full
+bindsym --release Shift+Print exec --no-startup-id ~/.config/i3/scripts/screenshot.sh region
+bindsym $mod+Print exec --no-startup-id ~/.config/i3/scripts/screenshot.sh window
 
 # --- Volume ---
 bindsym $mod+Shift+m exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
@@ -36,6 +47,8 @@ floating_modifier $mod
 # --- Applications ---
 bindsym $mod+Return exec kitty
 bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+Tab exec --no-startup-id rofi -show window
+bindsym $mod+grave exec --no-startup-id ~/.config/i3/scripts/scratchpad.sh
 bindsym $mod+q kill
 
 # --- Focus ---
@@ -95,7 +108,15 @@ bindsym $mod+Shift+0 move container to workspace number 10
 # --- Session ---
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'yup' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id ~/.config/i3/scripts/powermenu.sh
+bindsym $mod+Escape exec --no-startup-id ~/.config/i3/scripts/lock.sh
+bindsym $mod+Shift+slash exec --no-startup-id ~/.config/i3/scripts/cheatsheet.sh
+bindsym $mod+Shift+i exec --no-startup-id ~/.config/i3/scripts/notify-position.sh
+
+# --- Quick toggles ---
+bindsym $mod+Shift+g exec --no-startup-id ~/.config/i3/scripts/toggle.sh gaps
+bindsym $mod+Shift+b exec --no-startup-id ~/.config/i3/scripts/toggle.sh polybar
+bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/toggle.sh picom
 
 # --- Wallpaper & polybar theme ---
 bindsym $mod+Shift+w exec --no-startup-id ~/.config/i3/scripts/wallpaper.sh --random

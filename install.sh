@@ -77,20 +77,23 @@ install_deps() {
 	if command -v pacman >/dev/null 2>&1; then
 		as_root pacman -S --needed --noconfirm \
 			i3-wm polybar picom rofi kitty feh xfce4-screenshooter \
-			dex xss-lock i3lock network-manager-applet networkmanager \
+			dex xss-lock i3lock dunst python-pillow \
+			network-manager-applet networkmanager \
 			iproute2 xorg-setxkbmap ttf-dejavu
 
 	elif command -v apt-get >/dev/null 2>&1; then
 		as_root apt-get update
 		as_root apt-get install -y \
 			i3-wm polybar picom rofi kitty feh xfce4-screenshooter \
-			dex xss-lock i3lock network-manager-gnome network-manager \
+			dex xss-lock i3lock dunst python3-pil \
+			network-manager-gnome network-manager \
 			iproute2 x11-xkb-utils x11-xserver-utils fonts-dejavu-core
 
 	elif command -v dnf >/dev/null 2>&1; then
 		as_root dnf install -y \
 			i3 polybar picom rofi kitty feh xfce4-screenshooter \
-			dex xss-lock i3lock network-manager-applet NetworkManager \
+			dex xss-lock i3lock dunst python3-pillow \
+			network-manager-applet NetworkManager \
 			iproute xorg-x11-xkb-utils xorg-x11-server-utils \
 			dejavu-sans-mono-fonts
 
@@ -100,6 +103,7 @@ install_deps() {
 			x11-wm/i3 x11-misc/polybar x11-misc/picom x11-misc/rofi \
 			x11-terms/kitty media-gfx/feh xfce-extra/xfce4-screenshooter \
 			x11-misc/dex x11-misc/xss-lock x11-misc/i3lock \
+			x11-misc/dunst dev-python/pillow \
 			gnome-extra/nm-applet net-misc/networkmanager \
 			sys-apps/iproute2 x11-apps/setxkbmap x11-apps/xrandr \
 			media-fonts/dejavu
@@ -107,8 +111,9 @@ install_deps() {
 	else
 		echo "!! No supported package manager found." >&2
 		echo "   Install these manually: i3 polybar picom rofi kitty feh" >&2
-		echo "   xfce4-screenshooter dex xss-lock i3lock nm-applet" >&2
+		echo "   xfce4-screenshooter dex xss-lock i3lock dunst nm-applet" >&2
 		echo "   networkmanager iproute2 setxkbmap xrandr dejavu fonts" >&2
+		echo "   python3-pillow (optional, for wallpaper previews)" >&2
 		return 1
 	fi
 }
@@ -154,6 +159,8 @@ link_configs() {
 	link "$DOTS/i3" "$CONFIG_DIR/i3"
 	link "$DOTS/polybar" "$CONFIG_DIR/polybar"
 	link "$DOTS/picom" "$CONFIG_DIR/picom"
+	link "$DOTS/rofi" "$CONFIG_DIR/rofi"
+	link "$DOTS/dunst" "$CONFIG_DIR/dunst"
 	link "$DOTS/i3/scripts/wallpaper.sh" "$BIN_DIR/wallpaper"
 
 	echo "==> Setting permissions"

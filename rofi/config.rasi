@@ -1,0 +1,73 @@
+@import "colors.rasi"
+
+configuration {
+    font: "DejaVu Sans Mono 10";
+    show-icons: false;
+    dpi: 96;
+    terminal: "kitty";
+    timeout: 0;
+}
+
+window {
+    width: 40%;
+    border: 2px;
+    border-color: @accent;
+    border-radius: 0;
+    padding: 8px;
+    background-color: @bg;
+}
+
+mainbox {
+    children: [inputbar, listview];
+    spacing: 6px;
+    background-color: @bg;
+}
+
+inputbar {
+    background-color: @alt;
+    text-color: @fg;
+    padding: 6px 8px;
+    spacing: 6px;
+}
+
+prompt {
+    text-color: @accent;
+}
+
+entry {
+    text-color: @fg;
+    placeholder-color: @muted;
+}
+
+case-indicator {
+    text-color: @muted;
+}
+
+listview {
+    background-color: @bg;
+    columns: 1;
+    lines: 8;
+    spacing: 2px;
+}
+
+element {
+    background-color: @bg;
+    text-color: @fg;
+    padding: 4px 8px;
+}
+
+element selected {
+    background-color: @accent;
+    text-color: @bg;
+}
+
+element-text {
+    background-color: inherit;
+    text-color: inherit;
+}
+
+scrollbar {
+    width: 2px;
+    handle-color: @accent;
+    background-color: @bg;
+}

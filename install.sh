@@ -97,6 +97,14 @@ install_deps() {
 			iproute xorg-x11-xkb-utils xorg-x11-server-utils \
 			dejavu-sans-mono-fonts
 
+	elif command -v xbps-install >/dev/null 2>&1; then
+		# Void Linux.
+		as_root xbps-install -Sy \
+			i3wm polybar picom rofi kitty feh xfce4-screenshooter \
+			dex xss-lock i3lock dunst python3-Pillow \
+			network-manager-applet NetworkManager \
+			iproute2 setxkbmap xrandr dejavu-fonts-ttf
+
 	elif command -v emerge >/dev/null 2>&1; then
 		# Gentoo: USE flags for polybar/picom are your responsibility.
 		as_root emerge --ask=n --noreplace \

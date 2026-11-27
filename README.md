@@ -166,13 +166,14 @@ systems that only have `doas`.
 | Arch, EndeavourOS, CachyOS, Manjaro… | `pacman` | Supported |
 | Debian, Ubuntu, Mint, Pop!_OS, Kali… | `apt-get` | Supported |
 | Fedora, Nobara, RHEL-like with `dnf` | `dnf` | Supported |
+| Void Linux | `xbps-install` | Supported |
 | Gentoo, Funtoo | `emerge` | Supported, see note below |
 
 **Gentoo note:** polybar and picom need the correct USE flags (X, i3,
 pulseaudio, etc.). The installer only runs `emerge --noreplace`; setting USE
 flags is up to you in `/etc/portage/package.use`.
 
-**Other distros** (openSUSE, Void, Alpine, NixOS, Slackware…): the installer
+**Other distros** (openSUSE, Alpine, NixOS, Slackware…): the installer
 stops and prints the list of packages to install manually. After installing
 them, run `./install.sh --no-deps` to link the configs.
 

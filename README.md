@@ -262,6 +262,7 @@ Press `Enter`, `Escape`, or `Alt+R` to leave.
 | `Alt+Escape` | Lock the screen |
 | `Alt+Shift+E` | Power menu (lock / suspend / logout / reboot / shutdown) |
 | `Alt+Shift+W` | Random wallpaper |
+| `Alt+Shift+Q` | Wallpaper menu (preview grid) |
 | `Alt+Shift+T` | Theme picker |
 | `Alt+Shift+/` | Keybinding cheatsheet |
 | `Alt+Shift+I` | Notification position picker |
@@ -475,7 +476,7 @@ Wallpapers live in **`~/Pictures/wall`**. The installer copies everything from
 Usage:
 
 ```sh
-wallpaper             # pick with a preview grid
+wallpaper             # pick with a preview grid (also Alt+Shift+Q)
 wallpaper --random    # random image (also Alt+Shift+W)
 wallpaper --set FILE  # use a specific image
 wallpaper --restore   # restore the last one (used at login)

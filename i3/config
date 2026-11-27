@@ -120,6 +120,7 @@ bindsym $mod+Shift+p exec --no-startup-id ~/.config/i3/scripts/toggle.sh picom
 
 # --- Wallpaper & polybar theme ---
 bindsym $mod+Shift+w exec --no-startup-id ~/.config/i3/scripts/wallpaper.sh --random
+bindsym $mod+Shift+q exec --no-startup-id ~/.config/i3/scripts/wallpaper.sh
 bindsym $mod+Shift+t exec --no-startup-id ~/.config/polybar/scripts/theme.sh
 
 # --- Resize mode ---
